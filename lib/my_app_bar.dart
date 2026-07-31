@@ -1,25 +1,33 @@
 import 'package:auto_ecole_3s/extensions.dart';
+import 'package:auto_ecole_3s/style/app_size.dart';
+import 'package:auto_ecole_3s/widget/appBar/app_bar_drawer_icon.dart';
 import 'package:flutter/material.dart';
-import 'package:auto_ecole_3s/l10n/app_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 class MyAppBar extends StatelessWidget {
   const MyAppBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
+      alignment: Alignment.center,
+      padding: EdgeInsets.symmetric(horizontal: context.insets.padding),
+      height: context.insets.appBarHeight,
       color: Theme.of(context).appBarTheme.backgroundColor,
-      child: Row(
-        children: [
-          AppLogo(),
-          Spacer(),
-          AppMenus(),
-          Spacer(),
-          LanguageToggle(),
-          
-          ThemeToggle(),
-        ],
+      child: ConstrainedBox(
+        constraints: BoxConstraints(maxWidth: Insets.maxWidth),
+        child: Row(
+          children: [
+            AppLogo(),
+            Spacer(),
+            if (context.isDesktop) AppMenus(),
+            Spacer(),
+            LanguageToggle(),
+            
+            ThemeToggle(),
+            if (!context.isDesktop) AppBarDrawerIcon(),
+          ],
+        ),
       ),
     );
   }

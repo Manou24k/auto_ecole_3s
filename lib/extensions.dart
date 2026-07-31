@@ -1,4 +1,5 @@
 import 'package:auto_ecole_3s/app_textstyle.dart';
+import 'package:auto_ecole_3s/style/app_size.dart';
 import 'package:flutter/material.dart';
 import 'package:auto_ecole_3s/l10n/app_localizations.dart';
 enum FormFactorType {
@@ -33,6 +34,16 @@ extension StyledContext on BuildContext {
         return AppTextStyle.tablet;
       case FormFactorType.desktop:
         return AppTextStyle.desktop;
+    }
+  }
+  AppInsets get insets {
+    switch (formFactor) {
+      case FormFactorType.mobile:
+        return SmallInsets();
+      case FormFactorType.tablet:
+        return LargeInsets();
+      case FormFactorType.desktop:
+        return LargeInsets();
     }
   }
   AppLocalizations get texts => AppLocalizations.of(this)??lookupAppLocalizations(const Locale('fr'));
