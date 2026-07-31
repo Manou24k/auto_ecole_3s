@@ -1,3 +1,4 @@
+import 'package:auto_ecole_3s/constants/app_menu_list.dart';
 import 'package:auto_ecole_3s/extensions.dart';
 import 'package:auto_ecole_3s/style/app_size.dart';
 import 'package:auto_ecole_3s/widget/appBar/app_bar_drawer_icon.dart';
@@ -13,14 +14,14 @@ class MyAppBar extends StatelessWidget {
       alignment: Alignment.center,
       padding: EdgeInsets.symmetric(horizontal: context.insets.padding),
       height: context.insets.appBarHeight,
-      color: Theme.of(context).appBarTheme.backgroundColor,
+      color: context.theme.appBarTheme.backgroundColor,
       child: ConstrainedBox(
         constraints: BoxConstraints(maxWidth: Insets.maxWidth),
         child: Row(
           children: [
             AppLogo(),
             Spacer(),
-            if (context.isDesktop) AppMenus(),
+            if (context.isDesktop) LargeMenus(),
             Spacer(),
             LanguageToggle(),
             
@@ -46,17 +47,13 @@ class AppLogo extends StatelessWidget {
   }
 }
 
-class AppMenus extends StatelessWidget {
-  const AppMenus({super.key});
+class LargeMenus extends StatelessWidget {
+  const LargeMenus({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: [
-        Text(context.texts.acceuil),
-        Text(context.texts.formations),
-        Text(context.texts.aproposdenous),
-      ],
+      children: AppMenuList.getItems(context).map((e)=>LargeAppBarMenu(text: e.title, isSelected: true, onTap: (){})).toList(),
     );
   }
 }
@@ -93,6 +90,31 @@ class ThemeToggle extends StatelessWidget {
       onChanged: (value) {
         
       },
+    );
+  }
+}
+
+class LargeAppBarMenu extends StatelessWidget {
+  const LargeAppBarMenu({super.key, required this.text, required this.isSelected, required this.onTap});
+
+  final String text;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: Insets.med,
+          vertical: Insets.xs,
+        ),
+        child: Text(
+          text,
+          style: context.appTextStyle.bodyLgMedium,
+        ),
+      ),
     );
   }
 }

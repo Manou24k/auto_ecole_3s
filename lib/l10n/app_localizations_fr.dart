@@ -15,5 +15,5 @@ class AppLocalizationsFr extends AppLocalizations {
   String get formations => 'Formations';
 
   @override
-  String get aproposdenous => 'AProposDeNous';
+  String get aproposdenous => 'Nous Concernant';
 }
