@@ -1,5 +1,7 @@
 import 'package:auto_ecole_3s/extensions.dart';
 import 'package:flutter/material.dart';
+import 'package:auto_ecole_3s/l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 class MyAppBar extends StatelessWidget {
   const MyAppBar({super.key});
@@ -40,9 +42,9 @@ class AppMenus extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text("Accueil"),
-        Text("Formations"),
-        Text("A propos de nous"),
+        Text(context.texts.acceuil),
+        Text(context.texts.formations),
+        Text(context.texts.aproposdenous),
       ],
     );
   }

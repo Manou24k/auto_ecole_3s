@@ -1,5 +1,6 @@
 import 'package:auto_ecole_3s/app_textstyle.dart';
 import 'package:flutter/material.dart';
+import 'package:auto_ecole_3s/l10n/app_localizations.dart';
 enum FormFactorType {
   mobile,
   tablet,
@@ -34,4 +35,5 @@ extension StyledContext on BuildContext {
         return AppTextStyle.desktop;
     }
   }
+  AppLocalizations get texts => AppLocalizations.of(this)??lookupAppLocalizations(const Locale('fr'));
 }
