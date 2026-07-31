@@ -8,16 +8,19 @@ class MyAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        AppLogo(),
-        Spacer(),
-        AppMenus(),
-        Spacer(),
-        LanguageToggle(),
-        
-        ThemeToggle(),
-      ],
+    return Container(
+      color: Theme.of(context).appBarTheme.backgroundColor,
+      child: Row(
+        children: [
+          AppLogo(),
+          Spacer(),
+          AppMenus(),
+          Spacer(),
+          LanguageToggle(),
+          
+          ThemeToggle(),
+        ],
+      ),
     );
   }
 }
