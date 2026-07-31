@@ -1,3 +1,4 @@
+import 'package:auto_ecole_3s/extensions.dart';
 import 'package:flutter/material.dart';
 
 class MyAppBar extends StatelessWidget {
@@ -24,8 +25,10 @@ class AppLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MediaQuery.of(context).size.width;
     return Text(
       "Auto École 3S",
+      style: context.appTextStyle.titleLgBold,
     );
   }
 }
