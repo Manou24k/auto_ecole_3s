@@ -2,6 +2,7 @@ import 'package:auto_ecole_3s/constants/app_menu_list.dart';
 import 'package:auto_ecole_3s/extensions.dart';
 import 'package:auto_ecole_3s/style/app_size.dart';
 import 'package:auto_ecole_3s/widget/appBar/app_bar_drawer_icon.dart';
+import 'package:auto_ecole_3s/widget/language_switch.dart';
 import 'package:flutter/material.dart';
 
 class MyAppBar extends StatelessWidget {
@@ -23,7 +24,7 @@ class MyAppBar extends StatelessWidget {
             Spacer(),
             if (context.isDesktop) LargeMenus(),
             Spacer(),
-            LanguageToggle(),
+            LanguageSwitch(),
             
             ThemeToggle(),
             if (!context.isDesktop) AppBarDrawerIcon(),
@@ -58,27 +59,7 @@ class LargeMenus extends StatelessWidget {
   }
 }
 
-class LanguageToggle extends StatelessWidget {
-  const LanguageToggle({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return PopupMenuButton(
-      itemBuilder: (context) {
-        return [
-          PopupMenuItem(
-            value: 'fr',
-            child: Text('Français'),
-          ),
-          PopupMenuItem(
-            value: 'en',
-            child: Text('English'),
-          )
-        ];
-      },
-    );
-  }
-}
 
 class ThemeToggle extends StatelessWidget {
   const ThemeToggle({super.key});
