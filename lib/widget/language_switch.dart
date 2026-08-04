@@ -1,16 +1,19 @@
 import 'package:auto_ecole_3s/constants/app_icon.dart';
 import 'package:auto_ecole_3s/extensions.dart';
+import 'package:auto_ecole_3s/provider.dart';
 import 'package:auto_ecole_3s/widget/seo_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
     
-class LanguageSwitch extends StatelessWidget {
+class LanguageSwitch extends ConsumerWidget {
 
   const LanguageSwitch({ Key? key }) : super(key: key);
   
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,ref) {
+    final locale = ref.watch(appLocalProvider);
     return PopupMenuButton(
       itemBuilder: (context) {
         return [
@@ -24,6 +27,14 @@ class LanguageSwitch extends StatelessWidget {
           )
         ];
       },
+      initialValue: locale.value == 'fr' ? 'fr' : 'en',
+      onSelected: (String value) {
+        if (value == 'fr') {
+          ref.read(appLocalProvider.notifier).changeLocale('fr');
+        } else {
+          ref.read(appLocalProvider.notifier).changeLocale('en');
+        }
+      },
       child: Row(
         children: [
           Icon(
@@ -32,7 +43,7 @@ class LanguageSwitch extends StatelessWidget {
           ),
           Gap(4),
           SEOText(
-            Localizations.localeOf(context).languageCode =='fr'?'Fr':'En',
+            locale.value == 'fr' ? 'Fr' : 'En',
           ),
         ],
       )
