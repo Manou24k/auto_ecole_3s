@@ -1,9 +1,11 @@
 import 'package:auto_ecole_3s/constants/app_menu_list.dart';
 import 'package:auto_ecole_3s/extensions.dart';
+import 'package:auto_ecole_3s/shared/app_theme_controller.dart';
 import 'package:auto_ecole_3s/style/app_size.dart';
 import 'package:auto_ecole_3s/widget/appBar/app_bar_drawer_icon.dart';
 import 'package:auto_ecole_3s/widget/language_switch.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class MyAppBar extends StatelessWidget {
   const MyAppBar({super.key});
@@ -61,15 +63,16 @@ class LargeMenus extends StatelessWidget {
 
 
 
-class ThemeToggle extends StatelessWidget {
+class ThemeToggle extends ConsumerWidget {
   const ThemeToggle({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,ref) {
+    final state = ref.watch(appThemeControllerProvider);
     return Switch(
-      value: false,
+      value: state.value == ThemeMode.dark,
       onChanged: (value) {
-        
+        ref.read(appThemeControllerProvider.notifier).changeTheme(value ? ThemeMode.dark : ThemeMode.light);
       },
     );
   }

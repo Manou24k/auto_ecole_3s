@@ -1,6 +1,10 @@
+import 'package:auto_ecole_3s/shared/app_locale_controller.dart';
 import 'package:auto_ecole_3s/home_page.dart';
 import 'package:auto_ecole_3s/l10n/app_localizations.dart';
-import 'package:auto_ecole_3s/provider.dart';
+import 'package:auto_ecole_3s/shared/app_theme_controller.dart';
+import 'package:auto_ecole_3s/style/app_theme.dart';
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,7 +19,8 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context,ref) {
-    final locale = ref.watch(appLocalProvider);
+    final locale = ref.watch(appLocaleControllerProvider);
+    final theme = ref.watch(appThemeControllerProvider);
     return MaterialApp(
       localizationsDelegates: [
         AppLocalizations.delegate,
@@ -28,8 +33,9 @@ class MyApp extends ConsumerWidget {
         const Locale('fr',), 
       ],
       home: const HomePage(),
-      darkTheme: ThemeData.dark(),
-      themeMode: ThemeMode.dark,
+      darkTheme: AppTheme(fontFamily: 'Poppins').dark,
+      theme: AppTheme(fontFamily: 'Poppins').light,
+      themeMode: theme.value,
       locale: Locale(locale.value??'fr',),
       
       

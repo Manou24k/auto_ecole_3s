@@ -1,6 +1,7 @@
+import 'package:auto_ecole_3s/shared/app_locale_controller.dart';
 import 'package:auto_ecole_3s/constants/app_icon.dart';
 import 'package:auto_ecole_3s/extensions.dart';
-import 'package:auto_ecole_3s/provider.dart';
+
 import 'package:auto_ecole_3s/widget/seo_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,7 +14,7 @@ class LanguageSwitch extends ConsumerWidget {
   
   @override
   Widget build(BuildContext context,ref) {
-    final locale = ref.watch(appLocalProvider);
+    final locale = ref.watch(appLocaleControllerProvider);
     return PopupMenuButton(
       itemBuilder: (context) {
         return [
@@ -30,9 +31,9 @@ class LanguageSwitch extends ConsumerWidget {
       initialValue: locale.value == 'fr' ? 'fr' : 'en',
       onSelected: (String value) {
         if (value == 'fr') {
-          ref.read(appLocalProvider.notifier).changeLocale('fr');
+          ref.read(appLocaleControllerProvider.notifier).changeLocale('fr');
         } else {
-          ref.read(appLocalProvider.notifier).changeLocale('en');
+          ref.read(appLocaleControllerProvider.notifier).changeLocale('en');
         }
       },
       child: Row(
