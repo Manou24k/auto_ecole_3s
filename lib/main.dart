@@ -1,5 +1,5 @@
 import 'package:auto_ecole_3s/shared/app_locale_controller.dart';
-import 'package:auto_ecole_3s/home_page.dart';
+import 'package:auto_ecole_3s/features/home/presentation/home_page.dart';
 import 'package:auto_ecole_3s/l10n/app_localizations.dart';
 import 'package:auto_ecole_3s/shared/app_theme_controller.dart';
 import 'package:auto_ecole_3s/style/app_theme.dart';

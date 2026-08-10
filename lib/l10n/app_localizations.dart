@@ -115,6 +115,9 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'About Us'**
   String get aproposdenous;
+  String get name;
+  String get blabla;
+  String get description;
 }
 
 class _AppLocalizationsDelegate
